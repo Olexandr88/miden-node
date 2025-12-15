@@ -104,8 +104,9 @@ impl NetworkTransactionBuilder {
         tx_prover_url: Option<Url>,
         ticker_interval: Duration,
         bp_checkpoint: Arc<Barrier>,
+        script_cache_size: unize = 1024,
     ) -> Self {
-        let script_cache = LruCache::new(Self::DEFAULT_SCRIPT_CACHE_SIZE);
+        let script_cache = LruCache::new(script_cache_size);
         let coordinator = Coordinator::new(MAX_IN_PROGRESS_TXS);
         Self {
             store_url,
